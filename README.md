@@ -1,39 +1,92 @@
 # 🎓 Student Performance Analytics System
 
-An interactive dashboard that analyzes student academic performance using Python, Pandas, NumPy, and Streamlit.
+An interactive student academic performance dashboard developed using Python, Pandas, NumPy, and Streamlit.
 
 ## 📌 Project Overview
 
-The Student Performance Analytics System helps analyze student marks, calculate totals and averages, assign grades, determine pass/fail results, and identify top performers. The Streamlit dashboard provides an interactive interface for exploring student data.
+The Student Performance Analytics System processes student marks and attendance data to generate useful academic insights. It calculates total marks and averages, assigns grades, determines pass/fail results, compares subject performance, and identifies top-performing students.
+
+The project includes a Streamlit web interface that allows users to explore student records interactively and download analyzed data.
+
+## 📸 Dashboard Preview
+
+![Student Performance Analytics Dashboard](screenshots/dashboard.png)
 
 ## 🎯 Objectives
 
-- Analyze student academic performance.
-- Calculate total and average marks.
-- Assign grades and determine pass/fail results.
+- Analyze student academic performance using a CSV dataset.
+- Calculate total and average marks using Python and NumPy.
+- Assign grades based on student averages.
+- Determine pass/fail results.
 - Compare subject-wise performance.
-- Identify top and lowest performers.
-- Display results through an interactive dashboard.
-- Export analyzed data as CSV reports.
+- Identify the highest and lowest performers.
+- Provide an interactive dashboard for data exploration.
+- Generate downloadable CSV reports.
+- Validate calculations through automated unit tests.
 
 ## 🛠️ Technologies Used
 
-- **Python** — Core programming language
-- **Pandas** — Dataset handling and analysis
-- **NumPy** — Numerical calculations
-- **Streamlit** — Interactive web dashboard
-- **Unittest** — Automated testing
-- **CSV** — Dataset and report format
+| Technology | Purpose |
+|---|---|
+| Python | Core application logic |
+| Pandas | CSV loading and DataFrame analysis |
+| NumPy | Numerical calculations |
+| Streamlit | Interactive web dashboard |
+| CSV | Input dataset and output reports |
+| unittest | Automated testing |
+| Git and GitHub | Version control and project hosting |
 
 ## ✨ Features
 
-- Dashboard summary with student count, class average, pass count, and fail count
-- Department filter and student search by name or ID
-- Individual student performance profiles
-- Subject-wise marks analysis
-- Grade and pass/fail distribution
-- Top-performer leaderboard
-- Downloadable student analysis reports
+### 1. Dashboard
+Displays total students, class average, pass count, fail count, subject-wise average marks, and performance charts.
+
+### 2. Student Explorer
+Search for students by name or student ID, filter records by department, and inspect individual student performance.
+
+![Student Explorer](screenshots/student_explorer.png)
+
+### 3. Subject Analysis
+Explore subject-wise marks, averages, highest marks, lowest marks, and student comparisons.
+
+### 4. Top Performers
+View a leaderboard of students ranked by average marks.
+
+![Top Performers](screenshots/top_performers.png)
+
+### 5. CSV Downloads
+Download the complete student analysis or filtered student records.
+
+### 6. Automated Testing
+Use unit tests to check calculation functions, grade assignment, pass/fail logic, and dataset analysis.
+
+## 📊 Dataset
+
+The dataset is stored in `data/students.csv` and contains 20 fictional student records.
+
+| Column | Description |
+|---|---|
+| Student_ID | Unique student identifier |
+| Name | Student name |
+| Department | Student's department |
+| Python | Python marks out of 100 |
+| NumPy | NumPy marks out of 100 |
+| Pandas | Pandas marks out of 100 |
+| Data_Analysis | Data Analysis marks out of 100 |
+| Attendance | Attendance value recorded in the dataset |
+
+## 🧮 Analysis Rules
+
+- **Total Marks:** Sum of marks in the four subjects.
+- **Average Marks:** Total marks divided by four.
+- **Grade A:** Average of 90 or above.
+- **Grade B:** Average from 80 to below 90.
+- **Grade C:** Average from 70 to below 80.
+- **Grade D:** Average from 60 to below 70.
+- **Grade E:** Average from 50 to below 60.
+- **Grade F:** Average below 50.
+- **Pass:** Every subject mark is at least 40.
+- **Fail:** At least one subject mark is below 40.
 
 ## 📁 Project Structure
 
@@ -44,6 +97,11 @@ student-performance-analytics/
 ├── outputs/
 │   ├── student_analysis.csv
 │   └── subject_summary.csv
+├── screenshots/
+│   ├── dashboard.png
+│   ├── student_explorer.png
+│   ├── top_performers.png
+│   └── test_results.png
 ├── tests/
 │   └── test_analysis.py
 ├── app.py
@@ -55,35 +113,11 @@ student-performance-analytics/
 └── .gitignore
 ```
 
-## 📊 Dataset
-
-The dataset contains 20 sample student records with the following fields:
-
-- Student ID
-- Name
-- Department
-- Python marks
-- NumPy marks
-- Pandas marks
-- Data Analysis marks
-- Attendance
-
-The records are fictional and intended for educational purposes.
-
-## 🧮 Analysis Rules
-
-- **Total Marks:** Sum of marks across four subjects.
-- **Average Marks:** Total marks divided by four.
-- **Grade A:** Average of 90 or above.
-- **Grade B:** Average of 80–89.99.
-- **Grade C:** Average of 70–79.99.
-- **Grade D:** Average of 60–69.99.
-- **Grade E:** Average of 50–59.99.
-- **Grade F:** Average below 50.
-- **Pass:** At least 40 marks in every subject.
-- **Fail:** Below 40 in any subject.
-
 ## ⚙️ Installation and Execution
+
+### Prerequisites
+
+Python and Git should be installed on your computer.
 
 ### 1. Clone the repository
 
@@ -104,45 +138,51 @@ python -m pip install -r requirements.txt
 python -m streamlit run app.py
 ```
 
-Open the local URL displayed in the terminal, usually `http://localhost:8501`.
+Open the local URL shown in the terminal, usually `http://localhost:8501`.
 
-### 4. Run the analysis from the terminal
+### 4. Run the terminal-based analysis
 
 ```bash
 python main.py
 ```
 
-### 5. Run unit tests
+### 5. Run the unit tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## 📄 Output Reports
+## 📄 Generated Reports
 
 - `outputs/student_analysis.csv` — Student records with calculated totals, averages, grades, and results.
 - `outputs/subject_summary.csv` — Subject-wise average marks.
 
-The dashboard also provides downloadable CSV files.
+The dashboard also provides CSV download buttons.
 
-## 🧪 Testing
+## 🧪 Test Results
 
-The project includes unit tests for total marks, average marks, grade assignment, pass/fail logic, dataset analysis, and average calculations.
+The project includes seven unit tests covering total marks, average marks, grade assignment, pass/fail results, dataset analysis, and average correctness.
+
+![Unit Test Results](screenshots/test_results.png)
+
+The project owner reported that all seven tests passed during testing.
 
 ## 📚 Learning Outcomes
 
-- Working with CSV files and Pandas DataFrames
-- Using NumPy for numerical calculations
-- Applying Python functions, loops, and conditions
-- Creating interactive dashboards with Streamlit
-- Writing unit tests
-- Managing and publishing a project using Git and GitHub
+- Reading and processing CSV datasets with Pandas.
+- Using NumPy for numerical calculations.
+- Creating reusable Python functions.
+- Applying loops and conditional statements.
+- Building interactive dashboards with Streamlit.
+- Visualizing academic performance.
+- Writing automated unit tests.
+- Using Git and GitHub for version control.
 
 ## 👩‍💻 Author
 
 **Sreevalli**
 
-GitHub: https://github.com/Sreevalli476
+GitHub profile: https://github.com/Sreevalli476
 
 ## 🔗 Repository
 
@@ -150,4 +190,4 @@ https://github.com/Sreevalli476/student-performance-analytics
 
 ## 🏁 Conclusion
 
-This project demonstrates how Python data-analysis libraries can be used to analyze student performance and present meaningful academic insights through an interactive dashboard.
+This project demonstrates how Python data-analysis libraries can be used to process student records and present academic insights through an interactive dashboard. It combines data processing, numerical calculations, visualization, automated testing, and report generation in one application.

@@ -2,8 +2,8 @@
 
 ## Project Documentation
 
-**Project Type:** Python Mini Project  
 **Course:** EWB Courses – Python with AI  
+**Project Type:** Python Mini Project  
 **Student Name:** Sreevalli  
 **GitHub Repository:** https://github.com/Sreevalli476/student-performance-analytics
 
@@ -11,70 +11,72 @@
 
 ## 1. Introduction
 
-The Student Performance Analytics System is a Python-based mini-project developed to analyze student academic performance. It uses Pandas and NumPy to process student marks, calculate totals and averages, assign grades, determine pass/fail results, and identify top performers.
+The Student Performance Analytics System is a Python-based application designed to analyze student academic performance. It processes student records stored in a CSV file and calculates total marks, average marks, grades, and pass/fail results.
 
-An interactive web dashboard has been developed using Streamlit. It allows users to explore student records, filter students by department, search for individual students, view subject-wise performance, and download analysis reports.
+The project uses Pandas for data processing and NumPy for numerical calculations. A Streamlit dashboard provides an interactive interface for searching student records, filtering departments, comparing subject performance, viewing top performers, and downloading reports.
 
 ## 2. Problem Statement
 
-Manually calculating student totals, averages, grades, and results for multiple students can be time-consuming and may lead to errors. Comparing subject performance and identifying students who need academic support can also be difficult when information is maintained only in raw datasets.
+Analyzing student performance manually can be time-consuming when a dataset contains many student records. Calculating totals and averages, assigning grades, determining results, and comparing subject marks may also lead to mistakes.
 
-This project addresses these problems by automating student performance calculations and presenting the results in an interactive dashboard.
+This project automates these calculations and presents the results through an interactive dashboard, making student performance easier to explore and understand.
 
 ## 3. Objectives
 
-1. Read and process student data from a CSV file.
-2. Store and manipulate records using Pandas DataFrames.
-3. Use NumPy for numerical calculations.
-4. Calculate total and average marks for each student.
-5. Assign grades based on average marks.
-6. Determine pass/fail status using subject marks.
+1. Read student records from a CSV dataset.
+2. Process student information using Pandas DataFrames.
+3. Perform numerical calculations using NumPy.
+4. Calculate total and average marks.
+5. Assign grades according to defined rules.
+6. Determine student pass/fail results.
 7. Identify the highest and lowest performers.
 8. Calculate subject-wise average marks.
-9. Display academic insights through a Streamlit dashboard.
-10. Export analyzed results as CSV reports.
-11. Test important functions using Python's unittest framework.
+9. Develop an interactive dashboard using Streamlit.
+10. Generate downloadable CSV reports.
+11. Test important calculations using Python's unittest framework.
+12. Publish the source code and documentation on GitHub.
 
 ## 4. Technologies Used
 
-| Technology | Purpose |
+| Technology | Application |
 |---|---|
-| Python | Core programming and application logic |
-| Pandas | Reading CSV data and processing DataFrames |
-| NumPy | Calculating totals and averages |
-| Streamlit | Building the interactive dashboard |
-| CSV | Storing student data and generated reports |
-| unittest | Testing calculation and analysis functions |
-| Git and GitHub | Version control and project hosting |
+| Python | Application logic and calculations |
+| Pandas | Dataset loading and data analysis |
+| NumPy | Numerical calculations |
+| Streamlit | Interactive dashboard interface |
+| CSV | Dataset storage and report generation |
+| unittest | Automated unit testing |
+| Git | Source-code version control |
+| GitHub | Repository hosting and project sharing |
 
 ## 5. Dataset Description
 
-The input dataset is stored in `data/students.csv`. It contains 20 fictional student records.
+The input file is `data/students.csv`. It contains 20 fictional student records.
 
-### Dataset fields
+### Dataset columns
 
-- Student_ID
-- Name
-- Department
-- Python
-- NumPy
-- Pandas
-- Data_Analysis
-- Attendance
+| Column | Description |
+|---|---|
+| Student_ID | Unique student ID |
+| Name | Student name |
+| Department | Academic department |
+| Python | Python subject marks |
+| NumPy | NumPy subject marks |
+| Pandas | Pandas subject marks |
+| Data_Analysis | Data Analysis subject marks |
+| Attendance | Attendance value recorded for each student |
 
-Each subject is represented by marks out of 100. Attendance is recorded separately as a percentage-like value in the sample dataset.
-
-The dataset supports student-level analysis, department filtering, subject comparison, and performance ranking.
+The four subject marks are out of 100. Attendance is included as a separate dataset field.
 
 ## 6. System Design and Implementation
 
 ### 6.1 Dataset loading
 
-Pandas reads the CSV file into a DataFrame. This provides a structured way to access student names, departments, marks, and attendance.
+Pandas reads the CSV file and stores its contents in a DataFrame. The DataFrame provides structured access to student IDs, names, departments, marks, and attendance.
 
 ### 6.2 Total marks calculation
 
-NumPy calculates the sum of marks obtained in the four subjects.
+The `calculate_total()` function uses NumPy to calculate the sum of the four subject marks.
 
 **Formula:**
 
@@ -82,7 +84,7 @@ Total Marks = Python + NumPy + Pandas + Data Analysis
 
 ### 6.3 Average marks calculation
 
-The average is calculated by dividing the total marks by four.
+The `calculate_average()` function uses NumPy to calculate the average marks.
 
 **Formula:**
 
@@ -90,7 +92,7 @@ Average Marks = Total Marks / 4
 
 ### 6.4 Grade assignment
 
-The `assign_grade()` function assigns grades based on average marks.
+The `assign_grade()` function assigns grades according to the student's average marks.
 
 | Average Marks | Grade |
 |---|---|
@@ -103,41 +105,41 @@ The `assign_grade()` function assigns grades based on average marks.
 
 ### 6.5 Pass/fail determination
 
-The `get_result()` function checks every subject mark. A student passes only when all four subject marks are at least 40. If any subject mark is below 40, the student is marked as failed.
+The `get_result()` function checks all four subject marks. A student passes if every subject mark is at least 40. If any subject mark is below 40, the result is Fail.
 
 ### 6.6 Student analysis
 
-The `analyze_students()` function processes each student record and adds the following calculated fields:
+The `analyze_students()` function processes the student records and adds four calculated fields:
 
-- Total_Marks
-- Average_Marks
-- Grade
-- Result
+- `Total_Marks`
+- `Average_Marks`
+- `Grade`
+- `Result`
 
-### 6.7 Class and subject analysis
+This allows the same analysis results to be displayed in the terminal and interactive dashboard.
 
-The `display_summary()` function reports the number of students, class average, highest and lowest performers, pass/fail counts, subject-wise averages, and top five students.
+### 6.7 Class summary and subject analysis
+
+The `display_summary()` function reports the total number of students, class average, highest and lowest performers, pass/fail counts, subject-wise averages, and top five performers.
 
 ### 6.8 Interactive dashboard
 
-The `app.py` file implements the user interface with Streamlit. It includes:
+The `app.py` file uses Streamlit to provide the following pages and features:
 
-- Dashboard summary metrics
-- Department filtering
-- Search by student name or ID
-- Individual student performance profiles
-- Subject-wise marks analysis
-- Grade distribution
-- Pass/fail distribution
-- Top-performer leaderboard
-- CSV download options
+- **Dashboard:** Summary metrics, subject averages, grade distribution, and pass/fail statistics.
+- **Student Explorer:** Search by student name or ID, department filtering, and individual student profiles.
+- **Subject Analysis:** Subject selection, average marks, highest marks, lowest marks, and student comparisons.
+- **Top Performers:** A leaderboard ranked by average marks.
+- **CSV Downloads:** Download the complete analyzed dataset or filtered records.
 
 ### 6.9 Report generation
 
-The application generates CSV reports in the `outputs/` directory:
+The project generates two CSV reports:
 
-1. `student_analysis.csv` — Includes the analyzed student records and calculated fields.
-2. `subject_summary.csv` — Contains subject-wise average marks.
+1. `outputs/student_analysis.csv` — Contains student records with calculated totals, averages, grades, and results.
+2. `outputs/subject_summary.csv` — Contains subject-wise average marks.
+
+The Streamlit interface also provides downloadable CSV files.
 
 ## 7. Project Folder Structure
 
@@ -148,6 +150,11 @@ student-performance-analytics/
 ├── outputs/
 │   ├── student_analysis.csv
 │   └── subject_summary.csv
+├── screenshots/
+│   ├── dashboard.png
+│   ├── student_explorer.png
+│   ├── top_performers.png
+│   └── test_results.png
 ├── tests/
 │   └── test_analysis.py
 ├── app.py
@@ -159,127 +166,145 @@ student-performance-analytics/
 └── .gitignore
 ```
 
-## 8. Execution Instructions
+## 8. Application Screenshots
 
-### Install dependencies
+### 8.1 Dashboard Overview
+
+![Student Performance Analytics Dashboard](screenshots/dashboard.png)
+
+**Description:** The dashboard presents summary metrics and visualizations for student academic performance.
+
+### 8.2 Student Explorer
+
+![Student Explorer](screenshots/student_explorer.png)
+
+**Description:** The Student Explorer provides department filtering, student search, and individual student performance details.
+
+### 8.3 Top Performers
+
+![Top Performers](screenshots/top_performers.png)
+
+**Description:** The leaderboard displays students ranked by average marks.
+
+### 8.4 Unit Test Results
+
+![Unit Test Results](screenshots/test_results.png)
+
+**Description:** The screenshot records the output of the automated unit test run.
+
+*Note: Replace or remove any screenshot reference if the corresponding image has not been added to the `screenshots/` folder.*
+
+## 9. Execution Instructions
+
+### 9.1 Install the dependencies
 
 ```bash
 python -m pip install -r requirements.txt
 ```
 
-### Run the terminal analysis
+### 9.2 Run the terminal analysis
 
 ```bash
 python main.py
 ```
 
-### Run the interactive dashboard
+### 9.3 Launch the interactive dashboard
 
 ```bash
 python -m streamlit run app.py
 ```
 
-The dashboard opens in a web browser using the local address displayed in the terminal.
+The terminal displays a local URL, usually `http://localhost:8501`. Open that URL in a browser to use the dashboard.
 
-### Run the unit tests
+### 9.4 Run the unit tests
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-## 9. Testing
+## 10. Testing and Validation
 
-The project includes seven unit tests covering:
+The project contains seven unit tests.
 
-1. Total marks calculation
-2. Average marks calculation
-3. Grade assignment
-4. Pass result
-5. Fail result
-6. Dataset loading and analysis
-7. Correct average calculation for every student
+| Test | Purpose |
+|---|---|
+| Total marks | Verifies the sum of subject marks |
+| Average marks | Verifies the average calculation |
+| Grade assignment | Checks grade boundaries |
+| Pass result | Checks the passing condition |
+| Fail result | Checks the failing condition |
+| Dataset and analysis | Verifies the dataset size and calculated columns |
+| Average correctness | Checks averages for individual student records |
 
-**Testing status:** All seven tests passed in the reported test run.
+**Reported result:** All seven tests passed during the project's test run.
 
-## 10. Output and Screenshots
-
-The project produces an interactive dashboard with summary metrics, student records, filters, charts, and a top-performer leaderboard. It also produces downloadable CSV reports.
-
-Insert actual screenshots of the running application below:
-
-### Screenshot 1: Dashboard overview
-
-*Insert the screenshot showing the dashboard heading, summary metrics, and subject-wise chart.*
-
-### Screenshot 2: Student Explorer
-
-*Insert the screenshot showing student search, department filter, and individual student details.*
-
-### Screenshot 3: Top Performers
-
-*Insert the screenshot showing the student leaderboard.*
-
-### Screenshot 4: Unit test results
-
-*Insert the terminal screenshot showing all seven tests passing.*
+The test output screenshot is included in Section 8.4 when the corresponding image is available.
 
 ## 11. Challenges Faced
 
-### Dataset filename mismatch
+### 11.1 Dataset filename mismatch
 
-Initially, the Python application could not locate the dataset because the filename used in the code did not match the actual CSV filename. The issue was resolved by ensuring the dataset was named `students.csv` and the code referenced `data/students.csv`.
+Initially, the dataset could not be loaded because the filename referenced by the program did not match the actual CSV filename. This was resolved by naming the file `students.csv` and using the path `data/students.csv`.
 
-### Integrating the dashboard
+### 11.2 Dashboard integration
 
-The existing analysis functions were reused in the Streamlit application so that the dashboard could display calculated student results without duplicating the analysis logic.
+The existing analysis functions were reused in the Streamlit interface. This avoided duplicating the calculation logic and allowed the dashboard to display analyzed student results.
 
-### Testing and version control
+### 11.3 Automated testing
 
-Unit tests were used to verify important calculations. Git and GitHub were then used to commit and publish the project files.
+Unit tests were created to validate calculations, grade assignment, pass/fail logic, and dataset analysis.
+
+### 11.4 Git and GitHub
+
+The project was committed and pushed to GitHub. The local and remote changes were merged before the final push was completed.
 
 ## 12. Learning Outcomes
 
 Through this project, I learned how to:
 
-- Read and process CSV files using Pandas
-- Perform numerical calculations using NumPy
-- Write reusable Python functions
-- Apply loops and conditional statements
-- Calculate grades and academic results
-- Build an interactive dashboard using Streamlit
-- Display tables, charts, and summary metrics
-- Generate downloadable CSV reports
-- Write unit tests
-- Use Git and GitHub for version control and project hosting
+- Read CSV datasets using Pandas.
+- Perform numerical calculations using NumPy.
+- Work with DataFrames and tabular data.
+- Implement Python functions, loops, and conditions.
+- Calculate totals, averages, grades, and results.
+- Build interactive interfaces with Streamlit.
+- Display charts, tables, and summary metrics.
+- Generate downloadable CSV reports.
+- Write and execute unit tests.
+- Use Git and GitHub for version control and project hosting.
 
 ## 13. Limitations and Future Enhancements
 
 ### Current limitations
 
-- The project uses a sample dataset rather than a live student database.
-- The dashboard does not include user authentication.
-- The analysis is limited to the available student and subject fields.
+- The system uses a sample CSV dataset rather than a live student database.
+- The dashboard does not currently provide user authentication.
+- Analysis is limited to the available student fields and four subjects.
 
 ### Future enhancements
 
-- Upload new datasets directly through the dashboard.
-- Add more subjects and academic semesters.
-- Introduce attendance-based alerts.
-- Add database integration.
-- Generate PDF reports.
-- Deploy the dashboard online.
+- Add a CSV upload feature.
+- Support additional subjects and semesters.
+- Add attendance-based analysis and alerts.
+- Integrate a database for persistent records.
+- Generate downloadable PDF reports.
+- Deploy the Streamlit application online.
 
 ## 14. Final Outcome
 
-The Student Performance Analytics System successfully combines Python programming, data analysis, automated calculations, unit testing, and interactive visualization. It provides a structured way to explore student performance and generate reports.
+The Student Performance Analytics System combines Python programming, data processing, numerical calculations, interactive visualization, automated testing, and report generation.
 
-The project demonstrates the practical use of Python libraries to transform raw student data into useful academic information.
+It provides an organized way to analyze student performance, compare subject marks, identify top performers, and explore results through a web-based dashboard.
 
 ## 15. GitHub Repository
 
 **Repository URL:**  
 https://github.com/Sreevalli476/student-performance-analytics
 
+The repository contains the source code, dataset, tests, dependency file, README, project documentation, and screenshots that have been added.
+
 ## 16. Conclusion
 
-This mini-project demonstrates how Python, Pandas, NumPy, and Streamlit can be used together to create an interactive student performance analysis application. It reduces manual calculation, supports student-level and subject-level analysis, and presents results in a user-friendly format.
+This project demonstrates the practical use of Python, Pandas, NumPy, and Streamlit to create an interactive academic performance analysis application. It reduces manual calculations and presents student results in a structured and user-friendly format.
+
+The project also provides practical experience in data analysis, visualization, testing, documentation, and version control.
